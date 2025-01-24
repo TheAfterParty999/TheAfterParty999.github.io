@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The After Party</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1C1C1C, #2A2A2A);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: auto;
+        }
+
+        header {
+            padding: 30px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.85);
+            border-bottom: 3px solid rgba(225, 69, 106, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            width: 160px;
+            height: 160px;
+            background-image: url('https://github.com/TheAfterParty999/TheAfterParty999.github.io/blob/main/Album%20Cover%20.jpg?raw=true');
+            background-size: cover;
+            background-position: center;
+            margin: 0 auto;
+            border-radius: 15%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #e1456a;
+            margin: 15px 0;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+        }
+
+        main {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+        }
+
+        .track-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .track-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background-color: #383838;
+            border: 1px solid rgba(225, 69, 106, 0.6);
+            border-radius: 10px;
+            margin: 10px 0;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .track-list li:hover {
+            background-color: #444444;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .track-name {
+            flex-grow: 1;
+            font-size: 20px;
+            padding-left: 10px;
+            color: #ffffff;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        footer {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.85);
+            border-top: 3px solid rgba(225, 69, 106, 0.6);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .control-button {
+            background: #e1456a;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-button:hover {
+            background: #ff3c70;
+            transform: scale(1.1);
+        }
+
+        .song-info {
+            text-align: center;
+            font-size: 20px;
+            color: #e1456a;
+            font-weight: 600;
+        }
+
+        .progress-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #ddd;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #e1456a;
+            width: 0;
+            transition: width 0.2s;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .control-button {
+                font-size: 20px;
+            }
+
+            .track-name {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                width: 120px;
+                height: 120px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .control-button {
+                font-size: 18px;
+            }
+
+            .track-name {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo"></div>
+        <h1>The After Party</h1>
+    </header>
+
+    <main>
+        <ul class="track-list">
+            <li>
+                <span class="track-name">Journey - Intro</span>
+                <button class="control-button" onclick="playTrack('audio1')"><i class="fas fa-play"></i></button>
+                <audio id="audio1">
+                    <source src="audio/Journey_Intro.mp3" type="audio/mp3">
+                </audio>
+            </li>
+            <li>
+                <span class="track-name">Rental</span>
+                <button class="control-button" onclick="playTrack('audio2')"><i class="fas fa-play"></i></button>
+                <audio id="audio2">
+                    <source src="https://github.com/TheAfterParty999/TheAfterParty999.github.io/raw/refs/heads/main/audio/Rental.mp3" type="audio/mp3">
+                </audio>
+            </li>
+            <li>
+                <span class="track-name">Star Struck</span>
+                <button class="control-button" onclick="playTrack('audio3')"><i class="fas fa-play"></i></button>
+                <audio id="audio3">
+                    <source src="audio/Star_Struck.mp3" type="audio/mp3">
+                </audio>
+            </li>
+        </ul>
+
+        <div class="progress-container">
+            <div class="progress-bar" onclick="setProgress(event)">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="song-info" id="song-info">Now Playing: <span id="track-title">None</span></div>
+        <button class="control-button" id="pause-button" style="display: none;" onclick="pauseTrack()"><i class="fas fa-pause"></i></button>
+        <button class="control-button" id="stop-button" style="display: none;" onclick="stopTrack()"><i class="fas fa-stop"></i></button>
+        <button class="control-button" id="resume-button" style="display: none;" onclick="resumeTrack()"><i class="fas fa-play"></i></button>
+    </footer>
+
+    <script>
+        let currentTrack = null;
+
+        function playTrack(trackId) {
+            const tracks = document.querySelectorAll('audio');
+            tracks.forEach(track => {
+                if (track.id === trackId) {
+                    track.play();
+                    currentTrack = track;
+                    updateSongInfo(track);
+                    updateProgressBar(track);
+                } else {
+                    track.pause();
+                }
+            });
+            toggleControlButtons(true);
+        }
+
+        function updateSongInfo(track) {
+            document.getElementById('track-title').innerText = track.parentNode.querySelector('.track-name').innerText;
+        }
+
+        function pauseTrack() {
+            if (currentTrack) {
+                currentTrack.pause();
+                toggleControlButtons(false);
+            }
+        }
+
+        function stopTrack() {
+            if (currentTrack) {
+                currentTrack.pause();
+                currentTrack.currentTime = 0;
+                toggleControlButtons(false);
+                document.getElementById('track-title').innerText = 'None';
+                document.getElementById('progress').style.width = '0%';
+            }
+        }
+
+        function resumeTrack() {
+            if (currentTrack) {
+                currentTrack.play();
+                toggleControlButtons(true);
+            }
+        }
+
+        function toggleControlButtons(isPlaying) {
+            document.getElementById('pause-button').style.display = isPlaying ? 'inline' : 'none';
+            document.getElementById('stop-button').style.display = isPlaying ? 'inline' : 'none';
+            document.getElementById('resume-button').style.display = isPlaying ? 'none' : 'inline';
+        }
+
+        function updateProgressBar(track) {
+            const progress = document.getElementById('progress');
+            const interval = setInterval(() => {
+                if (track.paused || track.ended) {
+                    clearInterval(interval);
+                    return;
+                }
+                const percentage = (track.currentTime / track.duration) * 100;
+                progress.style.width = percentage + '%';
+
+                if (percentage >= 100) {
+                    stopTrack();
+                }
+            }, 1000);
+        }
+
+        function setProgress(event) {
+            const progressBar = document.querySelector('.progress-bar');
+            const totalWidth = progressBar.clientWidth;
+            const clickX = event.clientX - progressBar.getBoundingClientRect().left;
+            const percentage = (clickX / totalWidth);
+            if (currentTrack) {
+                currentTrack.currentTime = percentage * currentTrack.duration;
+            }
+        }
+    </script>
+</body>
+
+</html>
